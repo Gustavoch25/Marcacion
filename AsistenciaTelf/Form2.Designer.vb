@@ -22,18 +22,19 @@ Partial Class Registro
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Registro))
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
-        Me.txtArea = New System.Windows.Forms.TextBox()
         Me.txtApMat = New System.Windows.Forms.TextBox()
         Me.txtApPat = New System.Windows.Forms.TextBox()
         Me.txtNombre = New System.Windows.Forms.TextBox()
-        Me.imagenHuella = New System.Windows.Forms.PictureBox()
         Me.btnGuardar = New System.Windows.Forms.Button()
         Me.vecesDedo = New System.Windows.Forms.Label()
+        Me.cbArea = New System.Windows.Forms.ComboBox()
+        Me.imagenHuella = New System.Windows.Forms.PictureBox()
         CType(Me.imagenHuella, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -87,14 +88,6 @@ Partial Class Registro
         Me.Label5.TabIndex = 1
         Me.Label5.Text = "Área"
         '
-        'txtArea
-        '
-        Me.txtArea.Font = New System.Drawing.Font("Comic Sans MS", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtArea.Location = New System.Drawing.Point(204, 200)
-        Me.txtArea.Name = "txtArea"
-        Me.txtArea.Size = New System.Drawing.Size(253, 31)
-        Me.txtArea.TabIndex = 2
-        '
         'txtApMat
         '
         Me.txtApMat.Font = New System.Drawing.Font("Comic Sans MS", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -119,15 +112,6 @@ Partial Class Registro
         Me.txtNombre.Size = New System.Drawing.Size(253, 31)
         Me.txtNombre.TabIndex = 2
         '
-        'imagenHuella
-        '
-        Me.imagenHuella.Location = New System.Drawing.Point(582, 36)
-        Me.imagenHuella.Name = "imagenHuella"
-        Me.imagenHuella.Size = New System.Drawing.Size(125, 147)
-        Me.imagenHuella.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.imagenHuella.TabIndex = 3
-        Me.imagenHuella.TabStop = False
-        '
         'btnGuardar
         '
         Me.btnGuardar.Enabled = False
@@ -149,24 +133,46 @@ Partial Class Registro
         Me.vecesDedo.TabIndex = 5
         Me.vecesDedo.Text = "Necesitas pasar el dedo"
         '
+        'cbArea
+        '
+        Me.cbArea.Font = New System.Drawing.Font("Comic Sans MS", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cbArea.FormattingEnabled = True
+        Me.cbArea.Items.AddRange(New Object() {"Nivel Avanzado", "Nivel Especialista", "Oficina", "IDM", "SOC Red", "Otros"})
+        Me.cbArea.Location = New System.Drawing.Point(204, 200)
+        Me.cbArea.Name = "cbArea"
+        Me.cbArea.Size = New System.Drawing.Size(214, 32)
+        Me.cbArea.TabIndex = 6
+        '
+        'imagenHuella
+        '
+        Me.imagenHuella.Location = New System.Drawing.Point(582, 36)
+        Me.imagenHuella.Name = "imagenHuella"
+        Me.imagenHuella.Size = New System.Drawing.Size(125, 147)
+        Me.imagenHuella.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.imagenHuella.TabIndex = 3
+        Me.imagenHuella.TabStop = False
+        '
         'Registro
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 331)
+        Me.Controls.Add(Me.cbArea)
         Me.Controls.Add(Me.vecesDedo)
         Me.Controls.Add(Me.btnGuardar)
         Me.Controls.Add(Me.imagenHuella)
         Me.Controls.Add(Me.txtNombre)
         Me.Controls.Add(Me.txtApPat)
         Me.Controls.Add(Me.txtApMat)
-        Me.Controls.Add(Me.txtArea)
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.MaximizeBox = False
         Me.Name = "Registro"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Registro"
         CType(Me.imagenHuella, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
@@ -179,11 +185,11 @@ Partial Class Registro
     Friend WithEvents Label3 As Label
     Friend WithEvents Label4 As Label
     Friend WithEvents Label5 As Label
-    Friend WithEvents txtArea As TextBox
     Friend WithEvents txtApMat As TextBox
     Friend WithEvents txtApPat As TextBox
     Friend WithEvents txtNombre As TextBox
     Friend WithEvents imagenHuella As PictureBox
     Friend WithEvents btnGuardar As Button
     Friend WithEvents vecesDedo As Label
+    Friend WithEvents cbArea As ComboBox
 End Class

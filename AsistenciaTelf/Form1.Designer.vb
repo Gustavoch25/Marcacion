@@ -22,7 +22,7 @@ Partial Class marcacion
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(marcacion))
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.Ingreso = New System.Windows.Forms.TabPage()
@@ -31,25 +31,17 @@ Partial Class marcacion
         Me.Salida = New System.Windows.Forms.TabPage()
         Me.TxtInpSalida = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.btnRegistro = New System.Windows.Forms.Button()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.TabControl1.SuspendLayout()
         Me.Ingreso.SuspendLayout()
         Me.Salida.SuspendLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
-        '
-        'PictureBox1
-        '
-        Me.PictureBox1.Image = Global.AsistenciaTelf.My.Resources.Resources.Huella
-        Me.PictureBox1.Location = New System.Drawing.Point(160, 64)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(100, 102)
-        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.PictureBox1.TabIndex = 0
-        Me.PictureBox1.TabStop = False
         '
         'Label1
         '
@@ -111,8 +103,8 @@ Partial Class marcacion
         '
         Me.Salida.Controls.Add(Me.TxtInpSalida)
         Me.Salida.Controls.Add(Me.Label3)
-        Me.Salida.Controls.Add(Me.PictureBox2)
         Me.Salida.Controls.Add(Me.Label4)
+        Me.Salida.Controls.Add(Me.PictureBox2)
         Me.Salida.Location = New System.Drawing.Point(4, 25)
         Me.Salida.Name = "Salida"
         Me.Salida.Padding = New System.Windows.Forms.Padding(3)
@@ -142,16 +134,6 @@ Partial Class marcacion
         Me.Label3.TabIndex = 5
         Me.Label3.Text = "SALIDA"
         '
-        'PictureBox2
-        '
-        Me.PictureBox2.Image = Global.AsistenciaTelf.My.Resources.Resources.Huella
-        Me.PictureBox2.Location = New System.Drawing.Point(155, 63)
-        Me.PictureBox2.Name = "PictureBox2"
-        Me.PictureBox2.Size = New System.Drawing.Size(100, 102)
-        Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.PictureBox2.TabIndex = 3
-        Me.PictureBox2.TabStop = False
-        '
         'Label4
         '
         Me.Label4.AutoSize = True
@@ -173,21 +155,54 @@ Partial Class marcacion
         Me.btnRegistro.Text = "Registar"
         Me.btnRegistro.UseVisualStyleBackColor = True
         '
+        'PictureBox1
+        '
+        Me.PictureBox1.Image = Global.AsistenciaTelf.My.Resources.Resources.Huella
+        Me.PictureBox1.Location = New System.Drawing.Point(160, 64)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(100, 102)
+        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.PictureBox1.TabIndex = 0
+        Me.PictureBox1.TabStop = False
+        '
+        'PictureBox2
+        '
+        Me.PictureBox2.Image = Global.AsistenciaTelf.My.Resources.Resources.Huella
+        Me.PictureBox2.Location = New System.Drawing.Point(155, 63)
+        Me.PictureBox2.Name = "PictureBox2"
+        Me.PictureBox2.Size = New System.Drawing.Size(100, 102)
+        Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.PictureBox2.TabIndex = 3
+        Me.PictureBox2.TabStop = False
+        '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(683, 85)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(75, 23)
+        Me.Button1.TabIndex = 4
+        Me.Button1.Text = "Button1"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
         'marcacion
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 331)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.btnRegistro)
         Me.Controls.Add(Me.TabControl1)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.MaximizeBox = False
         Me.Name = "marcacion"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Marcación"
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabControl1.ResumeLayout(False)
         Me.Ingreso.ResumeLayout(False)
         Me.Ingreso.PerformLayout()
         Me.Salida.ResumeLayout(False)
         Me.Salida.PerformLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
@@ -205,4 +220,5 @@ Partial Class marcacion
     Friend WithEvents btnRegistro As Button
     Friend WithEvents TxtOutEntrada As Label
     Friend WithEvents TxtInpSalida As Label
+    Friend WithEvents Button1 As Button
 End Class

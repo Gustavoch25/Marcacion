@@ -94,6 +94,7 @@ Public Class Registro
     Private Sub Registro_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Init()
         iniciarCaptura()
+        cbArea.DropDownStyle = ComboBoxStyle.DropDownList
     End Sub
 
     Private Sub Registro_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
@@ -162,14 +163,15 @@ Public Class Registro
             MessageBox.Show("Debes de llenar el campo Apellido Paterno")
         ElseIf (txtApMat.Text.ToString().Equals("")) Then
             MessageBox.Show("Debes de llenar el campo Apellido Materno")
-        ElseIf (txtArea.Text.ToString().Equals("")) Then
+        ElseIf (cbArea.Text.ToString().Equals("")) Then
             MessageBox.Show("Debes de llenar el campo Área")
         Else
             cmd.CommandText = "INSERT INTO usuarios(nombre, apePaterno, apeMaterno, area, huella, estado) VALUES(?,?,?,?,?,?)"
             cmd.Parameters.AddWithValue("nombre", txtNombre.Text.ToString())
             cmd.Parameters.AddWithValue("apePaterno", txtApPat.Text.ToString())
             cmd.Parameters.AddWithValue("apeMaterno", txtApMat.Text.ToString())
-            cmd.Parameters.AddWithValue("area", txtArea.Text.ToString())
+            Dim area = cbArea.SelectedItem.ToString()
+            cmd.Parameters.AddWithValue("area", area)
             Using fm As New MemoryStream(template.Bytes)
                 cmd.Parameters.AddWithValue("huella", fm.ToArray())
             End Using
