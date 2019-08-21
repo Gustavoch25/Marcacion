@@ -171,7 +171,26 @@ Public Class Registro
             cmd.Parameters.AddWithValue("apePaterno", txtApPat.Text.ToString())
             cmd.Parameters.AddWithValue("apeMaterno", txtApMat.Text.ToString())
             Dim area = cbArea.SelectedItem.ToString()
-            cmd.Parameters.AddWithValue("area", area)
+            Dim AbrArea = ""
+            Select Case area
+                Case "Nivel Avanzado"
+                    AbrArea = "NA"
+                Case "Nivel Especialista"
+                    AbrArea = "NE"
+                Case "Oficina Seguridad"
+                    AbrArea = "OS"
+                Case "IDM"
+                    AbrArea = "IDM"
+                Case "SOC Red"
+                    AbrArea = "RED"
+                Case "CiberSeguridad"
+                    AbrArea = "CS"
+                Case "Control Normativo"
+                    AbrArea = "CN"
+                Case "Otros"
+                    AbrArea = "Otros"
+            End Select
+            cmd.Parameters.AddWithValue("area", AbrArea)
             Using fm As New MemoryStream(template.Bytes)
                 cmd.Parameters.AddWithValue("huella", fm.ToArray())
             End Using

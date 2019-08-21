@@ -137,7 +137,7 @@ Partial Class Registro
         '
         Me.cbArea.Font = New System.Drawing.Font("Comic Sans MS", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cbArea.FormattingEnabled = True
-        Me.cbArea.Items.AddRange(New Object() {"Nivel Avanzado", "Nivel Especialista", "Oficina", "IDM", "SOC Red", "Otros"})
+        Me.cbArea.Items.AddRange(New Object() {"Nivel Avanzado", "Nivel Especialista", "Oficina Seguridad", "IDM", "SOC Red", "CiberSeguridad", "Control Normativo", "Otros"})
         Me.cbArea.Location = New System.Drawing.Point(204, 200)
         Me.cbArea.Name = "cbArea"
         Me.cbArea.Size = New System.Drawing.Size(214, 32)
