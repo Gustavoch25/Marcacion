@@ -200,6 +200,7 @@ Public Class Registro
             conexion.Close()
             conexion.Dispose()
             MessageBox.Show("ok")
+            Me.Close()
         End If
     End Sub
 End Class
