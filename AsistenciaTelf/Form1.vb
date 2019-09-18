@@ -23,8 +23,6 @@ Public Class marcacion
         Catch ex As Exception
             MessageBox.Show("No se pudo inicializar la captura")
         End Try
-        MessageBox.Show("No se pudo inicializar la captura")
-        Me.Close()
     End Sub
 
     Protected Sub iniciarCaptura()
@@ -67,6 +65,10 @@ Public Class marcacion
     End Function
     Public Sub OnComplete(Capture As Object, ReaderSerialNumber As String, Sample As Sample) Implements EventHandler.OnComplete
         Dim caracteristicas As DPFP.FeatureSet = extraerCaracteristicas(Sample, DPFP.Processing.DataPurpose.Verification)
+        'Dim txtfecha As String = ""
+        Dim txtfecha As String = DateTime.Now.ToString("dd/MM/yyyy") 'fecha actual
+        Dim hora As String = Now.ToString("HH:mm:ss")
+        Dim marcacion As String = cbOpciones.SelectedItem.ToString()
         If Not caracteristicas Is Nothing Then
             Dim result As New DPFP.Verification.Verification.Result()
             Dim builderconex As New MySqlConnectionStringBuilder()
@@ -84,7 +86,7 @@ Public Class marcacion
             Dim verificado As Boolean = False
             Dim nombre As String = ""
             While (read.Read())
-                nombre = read("Nombre")
+                'nombre = read("Nombre")
                 Dim memoria As New MemoryStream(CType(read("huella"), Byte()))
                 template.DeSerialize(memoria.ToArray())
                 verificador.Verify(caracteristicas, template, result)
@@ -95,7 +97,7 @@ Public Class marcacion
                 End If
             End While
             If (verificado) Then
-                MessageBox.Show(nombre)
+                MessageBox.Show(nombre + marcacion + txtfecha + hora)
             Else
                 MessageBox.Show("No se encontro ningun reguistro")
             End If
@@ -142,6 +144,7 @@ Public Class marcacion
         iniciarCaptura()
         cbOpciones.DropDownStyle = ComboBoxStyle.DropDownList
         cbOpciones.SelectedIndex = 0
+        CheckForIllegalCrossThreadCalls = False
     End Sub
 
     Private Sub Marcacion_Leave(sender As Object, e As EventArgs) Handles MyBase.Leave
@@ -149,7 +152,7 @@ Public Class marcacion
     End Sub
 
     Private Sub Marcacion_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
-        Init()
+        'Init()
         iniciarCaptura()
     End Sub
 End Class
