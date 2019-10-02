@@ -67,7 +67,7 @@ Public Class marcacion
         Dim caracteristicas As DPFP.FeatureSet = extraerCaracteristicas(Sample, DPFP.Processing.DataPurpose.Verification)
         'Dim txtfecha As String = ""
         Dim txtfecha As String = DateTime.Now.ToString("dd/MM/yyyy") 'fecha actual
-        Dim hora As String = Now.ToString("HH:mm:ss")
+        Dim txthora As String = Now.ToString("HH:mm:ss")
         Dim marcacion As String = cbOpciones.SelectedItem.ToString()
         If Not caracteristicas Is Nothing Then
             Dim result As New DPFP.Verification.Verification.Result()
@@ -84,25 +84,68 @@ Public Class marcacion
             Dim read As MySqlDataReader
             read = cmd.ExecuteReader()
             Dim verificado As Boolean = False
+            Dim id As Int32 = 0
             Dim nombre As String = ""
+            Dim apePaterno As String = ""
+            Dim apeMaterno As String = ""
+            Dim fullname As String = ""
             While (read.Read())
                 'nombre = read("Nombre")
                 Dim memoria As New MemoryStream(CType(read("huella"), Byte()))
                 template.DeSerialize(memoria.ToArray())
                 verificador.Verify(caracteristicas, template, result)
                 If (result.Verified) Then
+                    id = read("id")
                     nombre = read("Nombre")
+                    apePaterno = read("apePaterno")
+                    apeMaterno = read("apeMaterno")
+                    fullname = nombre + " " + apePaterno + " " + apeMaterno
                     verificado = True
                     Exit While
                 End If
             End While
+            read.Dispose()
+            cmd.Dispose()
             If (verificado) Then
-                MessageBox.Show(nombre + marcacion + txtfecha + hora)
+                If marcacion = "Ingreso" Then
+                    Dim vsql As New MySqlCommand()
+                    vsql = conexion.CreateCommand
+                    vsql.CommandText = "Select id_usuarios FROM registrousuarios WHERE fecha_ingreso = '" & txtfecha & "' And id_usuarios = '" & id & "' "
+                    Dim readvsql As MySqlDataReader
+                    readvsql = vsql.ExecuteReader()
+                    Dim data As String = ""
+                    While (readvsql.Read())
+                        data = readvsql("id_usuarios")
+                        MessageBox.Show("Ya esta registrado en ingreso")
+                        readvsql.Dispose()
+                        vsql.Dispose()
+                        conexion.Close()
+                        conexion.Dispose()
+                        Exit Sub
+                    End While
+                    readvsql.Dispose()
+                    vsql.Dispose()
+
+                    Dim cmdReg As New MySqlCommand()
+                    cmdReg = conexion.CreateCommand
+                    cmdReg.CommandText = "INSERT INTO registrousuarios(id_usuarios, fecha_ingreso, hora_ingreso, fecha_salida, hora_salida) VALUES(?,?,?,?,?)"
+                    cmdReg.Parameters.AddWithValue("id_usuarios", id)
+                    cmdReg.Parameters.AddWithValue("fecha_ingreso", txtfecha)
+                    cmdReg.Parameters.AddWithValue("hora_ingreso", txthora)
+                    cmdReg.Parameters.AddWithValue("fecha_salida", "")
+                    cmdReg.Parameters.AddWithValue("hora_salida", "")
+                    cmdReg.ExecuteNonQuery()
+                    cmdReg.Dispose()
+
+                    MessageBox.Show(fullname + marcacion + txtfecha + txthora)
+
+                ElseIf marcacion = "Salida" Then
+
+                End If
+
             Else
                 MessageBox.Show("No se encontro ningun reguistro")
             End If
-            read.Dispose()
-            cmd.Dispose()
             conexion.Close()
             conexion.Dispose()
         End If
