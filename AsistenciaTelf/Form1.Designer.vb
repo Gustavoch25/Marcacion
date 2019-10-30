@@ -109,7 +109,7 @@ Partial Class marcacion
         '
         Me.cbOpciones.Font = New System.Drawing.Font("Comic Sans MS", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cbOpciones.FormattingEnabled = True
-        Me.cbOpciones.Items.AddRange(New Object() {"Ingreso", "Salida"})
+        Me.cbOpciones.Items.AddRange(New Object() {"--Seleccionar--", "Ingreso", "Salida"})
         Me.cbOpciones.Location = New System.Drawing.Point(17, 64)
         Me.cbOpciones.Name = "cbOpciones"
         Me.cbOpciones.Size = New System.Drawing.Size(159, 28)

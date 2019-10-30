@@ -140,7 +140,36 @@ Public Class marcacion
                     MessageBox.Show(fullname + marcacion + txtfecha + txthora)
 
                 ElseIf marcacion = "Salida" Then
+                    'Falta terminar 
+                    'UPDATE army SET troop1 = @troop1, troop2 = @troop2, troop3 = @troop3, hero = @hero WHERE username = 'ryan'
 
+                    Dim subNum As Int32 = Convert.ToInt32(Microsoft.VisualBasic.Left(txthora, 2))
+
+                    If 16 <= subNum And subNum < 17 Then
+                        Dim txtfechapas As String = DateTime.Now.AddDays(-1).ToString("dd/MM/yyyy")
+                        Dim cmdRegTN As New MySqlCommand()
+                        cmdRegTN = conexion.CreateCommand
+                        cmdRegTN.CommandText = "UPDATE registrousuarios SET fecha_salida = @fch_salida, hora_salida = @hr_salida WHERE id_usuarios = '" & id & "' AND fecha_ingreso = '" & txtfechapas & "' "
+                        cmdRegTN.Parameters.AddWithValue("@fch_salida", txtfecha)
+                        cmdRegTN.Parameters.AddWithValue("@hr_salida", txthora)
+                        cmdRegTN.ExecuteNonQuery()
+                        cmdRegTN.Dispose()
+                        conexion.Close()
+                        conexion.Dispose()
+
+                        MessageBox.Show(fullname + marcacion + txtfecha + txthora)
+                        Exit Sub
+                    End If
+
+                    Dim cmdReg As New MySqlCommand()
+                    cmdReg = conexion.CreateCommand
+                    cmdReg.CommandText = "UPDATE registrousuarios SET fecha_salida = @fch_salida, hora_salida = @hr_salida WHERE id_usuarios = '" & id & "' AND fecha_ingreso = '" & txtfecha & "' "
+                    cmdReg.Parameters.AddWithValue("@fch_salida", txtfecha)
+                    cmdReg.Parameters.AddWithValue("@hr_salida", txthora)
+                    cmdReg.ExecuteNonQuery()
+                    cmdReg.Dispose()
+
+                    MessageBox.Show(fullname + marcacion + txtfecha + txthora)
                 End If
 
             Else
